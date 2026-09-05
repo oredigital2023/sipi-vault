@@ -24,6 +24,26 @@ for t in tools:
     cat = t['category']
     status = t['status']
     cloud_label = t['cloud_label']
+    cloud_provider = t.get('cloud_provider', 'Nube')
+    repo_name = t.get('repo_name', '')
+    repo_url = t.get('repo_url', '')
+    web_url = t.get('web_url', '')
+    integrations = t.get('integrations', [])
+
+    integ_html_list = []
+    for ig in integrations:
+        integ_html_list.append(
+            f'''<div class="flex items-start gap-1.5 text-[11px] bg-sipi-card border border-sipi-cardBorder/80 rounded-lg p-2">
+                <span class="font-semibold text-emerald-400 shrink-0">• {ig['name']}:</span>
+                <span class="text-sipi-textMuted">{ig['detail']}</span>
+            </div>'''
+        )
+    integ_html = '\\n'.join(integ_html_list)
+
+    if repo_url and repo_url.startswith('http'):
+        repo_link_html = f'''<a href="{repo_url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] text-sipi-peach hover:underline"><svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>{repo_name}</a>'''
+    else:
+        repo_link_html = f'''<span class="text-[11px] text-sipi-textMuted">{repo_name}</span>'''
 
     card = f'''
       <!-- TOOL: {t['id']} -->
@@ -42,30 +62,56 @@ for t in tools:
           <h3 class="text-xl font-bold font-serif text-white group-hover:text-sipi-neon transition-colors mb-1.5">
             {name}
           </h3>
-          <p class="text-xs text-sipi-text/90 mb-4 leading-relaxed">
+          <p class="text-xs text-sipi-text/90 mb-3 leading-relaxed">
             {desc}
           </p>
+
+          <!-- Hosting & Cloud Banner -->
+          <div class="rounded-xl bg-sipi-bg/90 border border-sipi-cardBorder p-3 mb-3 text-[11px] flex flex-col gap-1.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-white font-semibold flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+                Plataforma Cloud:
+              </span>
+              <span class="text-sky-300 font-medium">{cloud_provider}</span>
+            </div>
+            <div class="flex items-center justify-between gap-2 pt-1 border-t border-sipi-cardBorder/60">
+              <span class="text-sipi-textMuted">Repositorio / Base:</span>
+              {repo_link_html}
+            </div>
+          </div>
 
           <!-- Tech & Specs -->
           <div class="rounded-xl bg-sipi-bg/70 border border-sipi-cardBorder/70 p-3 mb-3 text-[11px] text-sipi-textMuted">
             <strong class="text-white font-medium">Tecnología / Stack:</strong> {tech}
           </div>
 
+          <!-- Integraciones & Conexiones de Servicios -->
+          <div class="mb-3">
+            <span class="text-[11px] font-semibold text-sipi-neon flex items-center gap-1 mb-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              Servicios Vinculados & APIs:
+            </span>
+            <div class="space-y-1.5">
+              {integ_html}
+            </div>
+          </div>
+
           <!-- Details Info Box -->
-          <div class="space-y-2.5 mb-5">
-            <div class="rounded-xl bg-sipi-bg/50 border border-sipi-cardBorder/50 p-3 text-xs">
-              <span class="font-semibold text-sipi-peach flex items-center gap-1.5 mb-1">
+          <div class="space-y-2 mb-4">
+            <div class="rounded-xl bg-sipi-bg/50 border border-sipi-cardBorder/50 p-2.5 text-xs">
+              <span class="font-semibold text-sipi-peach flex items-center gap-1.5 mb-0.5">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                Ubicación & Acceso
+                Ubicación Local
               </span>
               <p class="text-sipi-textMuted text-[11px]">
-                <span class="text-white/80">Local:</span> <code class="text-xs text-sipi-neon bg-sipi-card px-1.5 py-0.5 rounded">{loc_local}</code>
+                <code class="text-xs text-sipi-neon bg-sipi-card px-1.5 py-0.5 rounded">{loc_local}</code>
               </p>
             </div>
 
-            <div class="rounded-xl bg-sipi-bg/50 border border-sipi-cardBorder/50 p-3 text-xs">
-              <span class="font-semibold text-emerald-400 flex items-center gap-1.5 mb-1">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <div class="rounded-xl bg-sipi-bg/50 border border-sipi-cardBorder/50 p-2.5 text-xs">
+              <span class="font-semibold text-emerald-400 flex items-center gap-1.5 mb-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 ¿Cómo se usa?
               </span>
               <p class="text-sipi-text/80 text-[11px] leading-relaxed">
@@ -73,8 +119,8 @@ for t in tools:
               </p>
             </div>
 
-            <div class="rounded-xl bg-sipi-bg/50 border border-sipi-cardBorder/50 p-3 text-xs">
-              <span class="font-semibold text-sipi-neon flex items-center gap-1.5 mb-1">
+            <div class="rounded-xl bg-sipi-bg/50 border border-sipi-cardBorder/50 p-2.5 text-xs">
+              <span class="font-semibold text-sipi-neon flex items-center gap-1.5 mb-0.5">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
                 Interrelación en el Embudo
               </span>
