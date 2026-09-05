@@ -538,5 +538,42 @@
     ],
     "how_to_use": "Se activan automáticamente para garantizar que todo lo que escriban los agentes cumpla la voz de Roxy y las normas legales de Meta y Herbalife.",
     "interrelation": "Garantiza la coherencia, autenticidad y seguridad de todas las publicaciones en redes sociales y campañas publicitarias."
+  },
+  {
+    "id": "sipi-magazine-system",
+    "category": "productos",
+    "category_name": "Productos & Revista",
+    "badge_class": "bg-amber-500/10 text-amber-400 border-amber-500/30",
+    "icon": "📐",
+    "name": "Sistema Modular SIPI Magazine (Visor & Design System)",
+    "status": "🟢 Edición 02 Compilada",
+    "description": "Sistema de diseño editorial y plantilla modular interactiva (sipi_magazine_template.html) deconstruida a partir de la Edición 02 (Septiembre 2026).",
+    "tech": "HTML5 · Tailwind CSS · Bento Grid · Design System · Navigation Slider",
+    "cloud_provider": "GitHub Pages / Cloudflare Hub",
+    "repo_name": "Workspace Habilidades de Herbalife",
+    "repo_url": "assets/designs/sipi_magazine_template.html",
+    "web_url": "assets/designs/sipi_magazine_template.html",
+    "location_local": "assets/designs/sipi_magazine_template.html",
+    "location_cloud": "assets/designs/sipi_magazine_template.html",
+    "cloud_label": "Ver Plantilla Modular ↗",
+    "integrations": [
+      {
+        "name": "Design System Septiembre",
+        "type": "Tokens de Diseño",
+        "detail": "Paleta oficial (#7EFE6D, #000000, #F4F6F2) y tipografía condensada"
+      },
+      {
+        "name": "Editor Editorial SIPI",
+        "type": "Redactor Autónomo",
+        "detail": "Redacción de artículos ajustada al tamaño de las tarjetas Bento"
+      },
+      {
+        "name": "Web Digital Builder",
+        "type": "Maquetador Web",
+        "detail": "Compilación modular en HTML responsive para móviles y tablets"
+      }
+    ],
+    "how_to_use": "Abrir sipi_magazine_template.html en el navegador o invocar al Director para generar un nuevo número sustituyendo los bloques modulares de texto e imágenes.",
+    "interrelation": "Permite al equipo de agentes producir la revista digital de 0 a 100 de forma 100% autónoma y pixel-perfect."
   }
 ]
