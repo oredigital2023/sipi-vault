@@ -192,16 +192,18 @@ flowchart TD
 
 ## Pilar 3: Publicaciones Editoriales, Lead Magnets & Bienestar
 
-### 3.1. SIPI Magazine (Revista Digital)
-* **¿Qué es?:** Revista digital de estilo de vida, nutrición consciente, mentalidad emprendedora y rendimiento. Es la carta de presentación institucional de la comunidad.
+### 3.1. SIPI Magazine (Revista Digital & Visor Modular)
+* **¿Qué es?:** Revista digital de estilo de vida, nutrición consciente, mentalidad emprendedora y rendimiento. Es la carta de presentación institucional de la comunidad y herramienta de captación de alto estatus.
 * **Infraestructura Cloud:**
   - **Hosting Web / Visor:** Cloudflare Workers (`sipi.fuelwroxy.workers.dev/magazine`).
   - **Repositorio GitHub:** [oredigital2023/sipi-ecosistema](https://github.com/oredigital2023/sipi-ecosistema) (Directorio de maquetas y visores interactivos).
 * **Integraciones y Servicios Vinculados:**
+  - **Plantilla Maestra Modular:** [`assets/designs/sipi_magazine_template.html`](file:///c:/Users/orelv/Downloads/Habilidades%20de%20Herbalife/assets/designs/sipi_magazine_template.html) con visor interactivo responsive móvil/desktop.
+  - **Sistema de Diseño (Design Tokens):** Habilidad `.agents/skills/sipi-magazine-system/` con paleta oficial (`#000000`, `#7EFE6D`, `#F4F6F2`, `#E8C547`) y componentes Bento.
   - **MailerLite API:** Automatización de entrega en formato PDF de alta resolución tras la confirmación de suscripción.
-  - **Editor Editorial SIPI (Agente IA):** Generación de convocatorias de talento emergente, maquetación de artículos y cuestionarios de cualificación.
-* **Edición Actual:** Edición 01 (Publicada). Edición 02 en preparación con la sección *"Talento Emergente: Las Mentes Detrás de los Negocios con Propósito"*.
-* **Ubicación Local:** `assets/designs/sipi_magazine.html` y maquetas en `assets/designs/`
+  - **Editor Editorial SIPI (Agente IA):** Redacción integral y convocatorias de talento emergente.
+* **Edición Actual:** Edición 01 (Publicada). Edición 02 (Septiembre 2026: Páginas 01 a 09 terminadas; páginas 10 a 13 en producción).
+* **Ubicación Local:** `assets/designs/sipi_magazine.html`, `assets/designs/sipi_magazine_template.html` y archivos fuente en `C:\Users\orelv\Downloads\SIPI Septiembre\`.
 * **Interrelación:** Actúa como **Lead Magnet de alto estatus**. Se entrega a través del bot con la palabra clave `REVISTA` y sirve de plataforma para entrevistar y cualificar a nuevos prospectos.
 
 ---
